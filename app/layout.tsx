@@ -1,17 +1,8 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import './globals.css'
 import StyledComponentsRegistry from '@/lib/StyledComponentsRegistry'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+import Navbar from '@/components/Layout/Navbar/Navbar'
 
 export const metadata: Metadata = {
   title: {
@@ -40,6 +31,13 @@ export const metadata: Metadata = {
   },
 }
 
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal'],
+  display: 'swap',
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,8 +45,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      <body className={roboto.className}>
+        <StyledComponentsRegistry>
+          <Navbar />
+          <main>{children}</main>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

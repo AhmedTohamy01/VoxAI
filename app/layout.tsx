@@ -1,39 +1,13 @@
-import type { Metadata } from 'next'
-import { Roboto } from 'next/font/google'
-import './globals.css'
-import StyledComponentsRegistry from '@/lib/StyledComponentsRegistry'
+'use client'
 import Navbar from '@/components/Layout/Navbar/Navbar'
-
-export const metadata: Metadata = {
-  title: {
-    default: 'ReceptaAI | AI-Powered Call Center Solutions',
-    template: '%s | ReceptaAI',
-  },
-  description:
-    'Transform your customer service with ReceptaAI — the next-generation AI call center solution. 24/7 intelligent agents, seamless integration, and superior customer experience.',
-  openGraph: {
-    title: 'ReceptaAI | AI-Powered Call Center Solutions',
-    description:
-      'ReceptaAI provides AI-driven call center solutions for modern businesses.',
-    url: 'https://www.receptaai.com',
-    siteName: 'ReceptaAI',
-    type: 'website',
-  } satisfies Metadata['openGraph'],
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: '/favicon.ico',
-  },
-  alternates: {
-    canonical: 'https://www.receptaai.com',
-  },
-}
+import StyledComponentsRegistry from '@/lib/StyledComponentsRegistry'
+import { Roboto } from 'next/font/google'
+import styled from 'styled-components'
+import './globals.css'
 
 const roboto = Roboto({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal'],
   display: 'swap',
 })
@@ -47,10 +21,21 @@ export default function RootLayout({
     <html lang='en'>
       <body className={roboto.className}>
         <StyledComponentsRegistry>
-          <Navbar />
+          <StickyNavbarWrapper>
+            <Navbar />
+          </StickyNavbarWrapper>
           <main>{children}</main>
         </StyledComponentsRegistry>
       </body>
     </html>
   )
 }
+
+/*---> Styles <---*/
+const StickyNavbarWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+`

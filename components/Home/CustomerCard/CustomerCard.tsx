@@ -4,18 +4,30 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 
+/*---> Types <---*/
+interface Props {
+  imageUrl: string
+  text: string
+  name: string
+  company: string
+}
+
 /*---> Component <---*/
-export default function Testimonials() {
+export default function CustomerCard({ imageUrl, text, name, company }: Props) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
   return (
     <MainWrapper
+      ref={ref}
       as={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 3, ease: 'easeOut' }}
     >
       <ImageWrapper>
         <Image
-          src='/img/customer1.avif'
+          src={imageUrl}
           alt='customer photo'
           fill
           style={{
@@ -25,13 +37,9 @@ export default function Testimonials() {
         />
       </ImageWrapper>
       <TextWrapper>
-        <Testimonial>
-          Smith.ai is our inbound sales team. Having a trained and personable
-          voice has transformed our ability to answer the phone and convert
-          callers to clients.
-        </Testimonial>
-        <Name>Jeremy Treister</Name>
-        <Company>CMIT Solutions</Company>
+        <Text>{text}</Text>
+        <Name>{name}</Name>
+        <Company>{company}</Company>
       </TextWrapper>
     </MainWrapper>
   )
@@ -68,7 +76,7 @@ const TextWrapper = styled.div`
   line-height: 1.5;
 `
 
-const Testimonial = styled.div`
+const Text = styled.div`
   /* border: 1px solid yellow; */
   color: #282825;
   margin-bottom: 20px;

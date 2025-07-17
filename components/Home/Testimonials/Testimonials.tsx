@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import CustomerCard from '../CustomerCard/CustomerCard'
+import { customersCards } from '../../../utils/constants'
 
 /*---> Component <---*/
 export default function Testimonials() {
@@ -28,20 +29,15 @@ export default function Testimonials() {
           </SubTitle>
         </TextWrapper>
         <CardsWrapper>
-          {/* {customersCards.map((category: any) => (
+          {customersCards.map((card: any) => (
             <CustomerCard
-              key={category.id}
-              imageUrl={getImageUrl(category.image_url)}
-              name={category.name?.default}
-              href={`/categories/${category.id}`}
+              key={card.id}
+              imageUrl={card.imageUrl}
+              text={card.text}
+              name={card.name}
+              company={card.company}
             />
-          ))} */}
-          <CustomerCard />
-          <CustomerCard />
-          <CustomerCard />
-          <CustomerCard />
-          <CustomerCard />
-          <CustomerCard />
+          ))}
         </CardsWrapper>
       </ContentWrapper>
     </MainWrapper>

@@ -1,0 +1,101 @@
+'use client'
+import styled from 'styled-components'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import CustomerCard from '../CustomerCard/CustomerCard'
+
+/*---> Component <---*/
+export default function Testimonials() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <MainWrapper>
+      <ContentWrapper>
+        <TextWrapper
+          ref={ref}
+          as={motion.div}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 3, ease: 'easeOut' }}
+        >
+          <Head>Immediate Impact</Head>
+          <Title>Trusted by 3,500+ growing businesses</Title>
+          <SubTitle>
+            Unblock growth with call handling that fits your business — and your
+            clients. From answering and screening to qualification and
+            scheduling, our receptionists keep things running smoothly.
+          </SubTitle>
+        </TextWrapper>
+        <CardsWrapper>
+          {/* {customersCards.map((category: any) => (
+            <CustomerCard
+              key={category.id}
+              imageUrl={getImageUrl(category.image_url)}
+              name={category.name?.default}
+              href={`/categories/${category.id}`}
+            />
+          ))} */}
+          <CustomerCard />
+          <CustomerCard />
+          <CustomerCard />
+          <CustomerCard />
+          <CustomerCard />
+          <CustomerCard />
+        </CardsWrapper>
+      </ContentWrapper>
+    </MainWrapper>
+  )
+}
+
+/*---> Styles <---*/
+const MainWrapper = styled.div`
+  /* border: 1px solid red; */
+  background-color: white;
+  height: fit-content;
+`
+
+const ContentWrapper = styled.div`
+  /* border: 1px solid red; */
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 80px 40px 80px;
+`
+
+const Head = styled.div`
+  /* border: 1px solid red; */
+  font-size: 14px;
+  font-weight: 500;
+  color: #044f71;
+  margin-bottom: 20px;
+`
+
+const Title = styled.div`
+  /* border: 1px solid red; */
+  font-size: 48px;
+  font-weight: 700;
+  color: #282825;
+  margin-bottom: 20px;
+`
+
+const SubTitle = styled.div`
+  /* border: 1px solid red; */
+  font-size: 24px;
+  font-weight: 500;
+  color: #282825;
+`
+
+const TextWrapper = styled.div`
+  /* border: 1px solid red; */
+  width: 70%;
+  margin-bottom: 40px;
+`
+
+const CardsWrapper = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+`

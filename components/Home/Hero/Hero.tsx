@@ -43,7 +43,7 @@ export default function Hero() {
         transition={{ duration: 3, ease: 'easeOut' }}
       >
         <Image
-          src='/img/ai-agent-4.png'
+          src='/img/ai-agent-4.avif'
           alt='hero image'
           fill
           style={{

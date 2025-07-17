@@ -43,13 +43,13 @@ export default function Hero() {
         transition={{ duration: 3, ease: 'easeOut' }}
       >
         <Image
-          src='/img/ai-agent.avif'
+          src='/img/ai-agent-4.png'
           alt='hero image'
           fill
           style={{
             objectFit: 'cover',
             zIndex: -1,
-            objectPosition: 'right center',
+            objectPosition: 'center',
           }}
         />
       </ImageWrapper>
@@ -119,12 +119,9 @@ const ImageWrapper = styled.div`
   /* border: 1px solid red; */
   position: relative;
   z-index: -1;
-
-  width: 800px; // styles for ai-agent hero image
-  height: 600px;
+  width: 1000px;
+  height: 450px;
   margin: 150px auto 100px auto;
-  /* height: 970px; */ // styles for smith.ai hero image
-  /* margin-top: -200px;  */
 
   /* Dissolve all edges (top, bottom, left, right) into background */
   mask-image: linear-gradient(to top, transparent 0%, black 20%),

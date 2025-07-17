@@ -51,16 +51,16 @@ export default function CallCoverage() {
 
 /*---> Styles <---*/
 const MainWrapper = styled.div`
+  /* border: 1px solid red; */
   background-color: white;
-  height: 500px;
+  height: fit-content;
 `
 
 const ContentWrapper = styled.div`
   /* border: 1px solid red; */
-  height: 70px;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 80px;
+  padding: 80px 80px 40px 80px;
   display: flex;
   justify-content: space-between;
   gap: 30px;

@@ -17,20 +17,20 @@ export default function Numbers() {
           <br /> competitors instead
         </Text>
       </NumberBlock>
-      {/* <NumberBlock>
+      <NumberBlock>
         <Number>$77K+</Number>
         <Text>
-          in expected costs to hire and train an in-house receptionist — who
-          only answers during their working hours
+          in expected costs to hire and train an<br /> in-house receptionist — who
+          only<br /> answers during their working hours
         </Text>
       </NumberBlock>
       <NumberBlock>
         <Number>24/7</Number>
         <Text>
-          call coverage when you sign up for Smith.ai — with human or AI
-          receptionists available to answer every time
+          call coverage when you sign up for<br /> Smith.ai — with human or AI<br />
+          receptionists available to answer every<br /> time
         </Text>
-      </NumberBlock> */}
+      </NumberBlock>
     </MainWrapper>
   )
 }
@@ -43,6 +43,8 @@ const MainWrapper = styled.div`
   padding: 150px 80px 0px 80px;
   background-color: #1a1a1a;
   height: 500px;
+  display: flex;
+  justify-content: space-between;
 `
 
 const NumberBlock = styled.div`
@@ -53,7 +55,7 @@ const NumberBlock = styled.div`
 
 const Number = styled.div`
   border: 1px solid red;
-  font-size: 96px;
+  font-size: 110px;
   font-weight: 700;
   background: linear-gradient(90deg, #0075aa, #044f71 55%, #044f71);
   -webkit-background-clip: text;

@@ -75,7 +75,7 @@ const MainWrapper = styled.div`
   /* border: 1px solid red; */
   max-width: 1440px;
   margin: 0 auto;
-  padding: 80px 80px 40px 80px;
+  padding: 80px;
   background-color: #1a1a1a;
   display: flex;
   justify-content: space-between;

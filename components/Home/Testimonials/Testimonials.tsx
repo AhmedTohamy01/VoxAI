@@ -20,7 +20,7 @@ export default function Testimonials() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 3, ease: 'easeOut' }}
         >
-          <Head>Immediate Impact</Head>
+          <Head>IMMEDITAE IMPACT</Head>
           <Title>Trusted by 3,500+ growing businesses</Title>
           <SubTitle>
             Unblock growth with call handling that fits your business — and your

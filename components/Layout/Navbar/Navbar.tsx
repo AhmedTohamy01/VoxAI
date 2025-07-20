@@ -40,10 +40,10 @@ export default function Navbar() {
           />
         </Link>
         <PhoneLoginWrapper>
-          <a href='tel:+1 555 123 4567' aria-label="Call us">
+          <a href='tel:+1 555 123 4567' aria-label='Call us'>
             <PhoneIcon />
           </a>
-          <a href='tel:+1 555 123 4567' aria-label="Call us">
+          <a href='tel:+1 555 123 4567' aria-label='Call us'>
             <PhoneNumber>+1 (333) 123-4567</PhoneNumber>
           </a>
           <StyledButton>Login</StyledButton>

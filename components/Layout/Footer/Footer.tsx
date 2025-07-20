@@ -132,7 +132,7 @@ export default function Footer() {
               />
             </Link>
             <CopyrightText>
-              VOX.AI, INC. ©{new Date().getFullYear()} ALL RIGHTS RESERVED
+              VoxAI, INC. ©{new Date().getFullYear()} ALL RIGHTS RESERVED
             </CopyrightText>
           </BottomLeft>
           <BottomCenter>

@@ -1,3 +1,4 @@
+import AnsweringModels from '@/components/Home/AnsweringModels/AnsweringModels'
 import CallCoverage from '@/components/Home/CallCoverage/CallCoverage'
 import Hero from '@/components/Home/Hero/Hero'
 import Numbers from '@/components/Home/Numbers/Numbers'
@@ -11,8 +12,9 @@ export default function HomeCompound() {
       <Hero />
       <CallCoverage />
       <Testimonials />
-      <Onboarding />
       <Numbers />
+      <AnsweringModels />
+      <Onboarding />
     </>
   )
 }

@@ -56,9 +56,28 @@ const MainWrapper = styled.div`
   padding: 20px;
   background-color: #fdfdfd;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
   display: flex;
   gap: 15px;
+
+  @media (max-width: 1024px) {
+    width: 350px;
+    min-width: 350px;
+    height: 220px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: unset;
+    max-width: 400px;
+    height: auto;
+    min-height: 200px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    gap: 12px;
+    min-height: 180px;
+  }
 `
 
 const ImageWrapper = styled.div`
@@ -69,17 +88,40 @@ const ImageWrapper = styled.div`
   height: 65px;
   border-radius: 50%;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+  }
+
+  @media (max-width: 480px) {
+    width: 55px;
+    min-width: 55px;
+    height: 55px;
+  }
 `
 
 const TextWrapper = styled.div`
   /* border: 1px solid yellow; */
   line-height: 1.5;
+  flex: 1;
 `
 
 const Text = styled.div`
   /* border: 1px solid yellow; */
   color: #282825;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
 `
 
 const Name = styled.div`
@@ -87,6 +129,14 @@ const Name = styled.div`
   font-size: 20px;
   color: #282825;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `
 
 const Company = styled.div`
@@ -94,4 +144,8 @@ const Company = styled.div`
   color: #85857a;
   font-size: 12px;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
 `

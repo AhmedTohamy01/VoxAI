@@ -56,6 +56,14 @@ const ContentWrapper = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 80px 80px 40px 80px;
+
+  @media (max-width: 768px) {
+    padding: 60px 20px 40px 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 15px 30px 15px;
+  }
 `
 
 const Head = styled.div`
@@ -72,6 +80,19 @@ const Title = styled.div`
   font-weight: 700;
   color: #282825;
   margin-bottom: 20px;
+
+  @media (max-width: 1024px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
 `
 
 const SubTitle = styled.div`
@@ -79,12 +100,36 @@ const SubTitle = styled.div`
   font-size: 24px;
   font-weight: 500;
   color: #282825;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `
 
 const TextWrapper = styled.div`
   /* border: 1px solid red; */
   width: 70%;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 25px;
+  }
 `
 
 const CardsWrapper = styled.div`
@@ -94,4 +139,12 @@ const CardsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 24px;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 15px;
+  }
 `

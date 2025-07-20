@@ -59,6 +59,14 @@ const MainWrapper = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 150px 80px 0px 80px;
+
+  @media (max-width: 768px) {
+    padding: 100px 20px 0px 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 80px 15px 0px 15px;
+  }
 `
 
 const TextWrapper = styled.div`
@@ -71,6 +79,20 @@ const Title = styled.div`
   font-weight: 700;
   text-align: center;
   margin-bottom: 20px;
+
+  @media (max-width: 1024px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
 `
 
 const SubTitle = styled.div`
@@ -80,6 +102,23 @@ const SubTitle = styled.div`
   text-align: center;
   line-height: 1.5;
   margin-bottom: 40px;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 30px;
+    br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
 `
 
 const ButtonsWrapper = styled.div`
@@ -88,6 +127,11 @@ const ButtonsWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+  }
 `
 
 const StyledButton = styled(Button)`
@@ -110,6 +154,17 @@ const StyledButton = styled(Button)`
     filter: brightness(0.92);
     color: #ffffff !important;
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    height: 45px;
+    font-size: 15px;
   }
 `
 
@@ -137,5 +192,17 @@ const ImageWrapper = styled.div`
 
   @media (max-width: 1024px) {
     width: 100%;
+    height: 400px;
+    margin: 120px auto 80px auto;
+  }
+
+  @media (max-width: 768px) {
+    height: 300px;
+    margin: 80px auto 60px auto;
+  }
+
+  @media (max-width: 480px) {
+    height: 250px;
+    margin: 60px auto 40px auto;
   }
 `

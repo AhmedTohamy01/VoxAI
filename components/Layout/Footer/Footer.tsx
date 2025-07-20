@@ -187,7 +187,7 @@ export default function Footer() {
 const FooterWrapper = styled.footer`
   color: #ffffff;
   position: relative;
-  padding-top: 40px;
+  padding-top: 20px;
 `
 
 const FooterContent = styled.div`

@@ -77,12 +77,38 @@ const MainWrapper = styled.div`
   background-color: #1a1a1a;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 1024px) {
+    padding: 60px 40px;
+    gap: 40px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 60px 20px;
+    gap: 50px;
+    align-items: center;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 15px;
+    gap: 40px;
+  }
 `
 
 const NumberBlock = styled.div`
   /* border: 1px solid red; */
   width: fit-content;
   height: 225px;
+
+  @media (max-width: 768px) {
+    height: auto;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    height: auto;
+  }
 `
 
 const Number = styled.div`
@@ -94,6 +120,20 @@ const Number = styled.div`
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+
+  @media (max-width: 1024px) {
+    font-size: 90px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 80px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 60px;
+    margin-bottom: 10px;
+  }
 `
 
 const Text = styled.div`
@@ -101,4 +141,19 @@ const Text = styled.div`
   text-align: center;
   font-size: 20px;
   line-height: 1.5;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    br {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `

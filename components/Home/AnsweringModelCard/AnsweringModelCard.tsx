@@ -62,6 +62,22 @@ const MainWrapper = styled.div`
   border-radius: 20px;
   padding: 35px;
   background-color: #282825;
+
+  @media (max-width: 1024px) {
+    width: 500px;
+    padding: 30px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 500px;
+    padding: 25px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+    border-radius: 16px;
+  }
 `
 
 const Head = styled.div`
@@ -77,6 +93,15 @@ const Title = styled.div`
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 `
 
 const Price = styled.div`
@@ -85,12 +110,31 @@ const Price = styled.div`
   font-weight: 700;
   font-style: italic;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `
 
 const SubTitle = styled.div`
   /* border: 1px solid red; */
   font-size: 20px;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
 `
 
 const StyledButton = styled(Button)`
@@ -112,6 +156,17 @@ const StyledButton = styled(Button)`
     filter: brightness(0.92);
     color: #ffffff !important;
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    height: 50px;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 480px) {
+    height: 45px;
+    font-size: 15px;
   }
 `
 
@@ -138,23 +193,59 @@ const StyledOutlineButton = styled(Button)`
   &:active {
     transform: scale(0.98); /* optional: subtle click effect */
   }
+
+  @media (max-width: 768px) {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    height: 45px;
+    font-size: 15px;
+  }
 `
 
 const Divider = styled.div`
   border: 1px solid #857c77;
   margin: 30px 0px;
+
+  @media (max-width: 768px) {
+    margin: 25px 0px;
+  }
+
+  @media (max-width: 480px) {
+    margin: 20px 0px;
+  }
 `
 
 const Text = styled.div`
   /* border: 1px solid red; */
   font-size: 20px;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
 `
 
 const QuestionText = styled.div`
   /* border: 1px solid red; */
   font-size: 20px;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `
 
 const AnswerText = styled.div`
@@ -163,6 +254,16 @@ const AnswerText = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    gap: 6px;
+  }
 `
 
 const CheckMarkIcon = styled(CircleCheck)`
@@ -170,4 +271,14 @@ const CheckMarkIcon = styled(CircleCheck)`
   color: #3fd653;
   width: 25px;
   height: 25px;
+
+  @media (max-width: 768px) {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+  }
 `

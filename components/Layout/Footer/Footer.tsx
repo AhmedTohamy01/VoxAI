@@ -26,11 +26,11 @@ export default function Footer() {
 
   return (
     <FooterWrapper
-      ref={ref}
-      as={motion.div}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 3, ease: 'easeOut' }}
+      // ref={ref}
+      // as={motion.div}
+      // initial={{ opacity: 0, y: 50 }}
+      // animate={isInView ? { opacity: 1, y: 0 } : {}}
+      // transition={{ duration: 3, ease: 'easeOut' }}
     >
       <FooterContent>
         {/* Main Content Section */}

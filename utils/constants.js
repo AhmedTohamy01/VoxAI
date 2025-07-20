@@ -2,7 +2,7 @@ export const customersCards = [
   {
     id: 1,
     imageUrl: '/img/customer1.avif',
-    text: 'Smith.ai is our inbound sales team. Having a trained and personable voice has transformed our ability to answer the phone and convert callers to clients.',
+    text: 'VoxAI is our inbound sales team. Having a trained and personable voice has transformed our ability to answer the phone and convert callers to clients.',
     name: 'Jeremy Treister',
     company: 'CMIT Solutions',
   },
@@ -30,14 +30,14 @@ export const customersCards = [
   {
     id: 5,
     imageUrl: '/img/customer5.avif',
-    text: `My only regret is that I didn't discover Smith.ai sooner. In the last week, I've received more leads than in the previous 2 months.`,
+    text: `My only regret is that I didn't discover VoxAI sooner. In the last week, I've received more leads than in the previous 2 months.`,
     name: 'Cristina Molteni',
     company: 'Molteni Employment Law',
   },
   {
     id: 6,
-    imageUrl: '/img/customer5.avif',
-    text: `Smith.ai is responsive, professional, and so incredible for my law firm! I'm so glad I compared the top services and selected Smith.ai!`,
+    imageUrl: '/img/customer6.avif',
+    text: `VoxAI is responsive, professional, and so incredible for my law firm! I'm so glad I compared the top services and selected VoxAI!`,
     name: 'Jalal Dallo',
     company: 'Dallo Law',
   },

@@ -59,11 +59,9 @@ export default function Numbers() {
       <NumberBlock>
         <Number>{count3}/7</Number>
         <Text>
-          call coverage when you sign up for
-          <br /> Smith.ai — with human or AI
-          <br />
-          receptionists available to answer every
-          <br /> time
+          call coverage when you sign up with
+          <br /> human or AI receptionists available
+          <br /> to answer every time
         </Text>
       </NumberBlock>
     </MainWrapper>

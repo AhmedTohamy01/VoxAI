@@ -20,19 +20,15 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
       >
-        <Title>
-          24/7 Phone Support
-          <br /> Zero Headcount
-        </Title>
+        <Title>Never miss another customer</Title>
         <SubTitle>
-          Recepta AI is the #1 receptionist to help small businesses capture
-          <br /> every call — day or night <br />
-          We answer, book, and follow up automatically <br />
-          No hiring, no missed opportunities, no stress
+          Get the #1 rated receptionist service designed specifically
+          <br /> for small businesses.
+          <br /> Delivering excellence in every call.
         </SubTitle>
         <ButtonsWrapper>
-          <StyledButton>Discover Recepta</StyledButton>
-          <StyledButton>Request demo</StyledButton>
+          <StyledButton>AI Receptionist</StyledButton>
+          <StyledButton>Human Receptionists</StyledButton>
         </ButtonsWrapper>
       </TextWrapper>
       <ImageWrapper
@@ -99,13 +95,15 @@ const StyledButton = styled(Button)`
   background: linear-gradient(to bottom, #044f71, #0075aa) !important;
   color: #ffffff !important;
   border: none;
-  width: 190px;
+  /* width: fit-content; */
+  min-width: 190px;
   height: 55px;
   font-size: 18px;
   font-weight: 500;
   border-radius: 28px;
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
   transition: box-shadow 0.3s ease;
+  padding: 0px 20px;
 
   &:hover,
   &:focus {

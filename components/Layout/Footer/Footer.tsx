@@ -29,13 +29,13 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src='/img/recepta-logo.avif'
-                alt='ReceptaAI Logo'
+                alt='VoxAI Logo'
                 width={120}
                 height={40}
               />
             </Link>
             <CompanyDescription>
-              ReceptaAI is the leading AI-powered customer service platform that helps businesses deliver exceptional customer experiences through intelligent automation and human-like interactions.
+              VoxAI is the leading AI-powered customer service platform that helps businesses deliver exceptional customer experiences through intelligent automation and human-like interactions.
             </CompanyDescription>
             <SocialLinks>
               <SocialLink href="https://twitter.com" target="_blank" aria-label="Twitter">
@@ -63,7 +63,7 @@ export default function Footer() {
               <FooterLink href="/integrations">Integrations</FooterLink>
               <FooterLink href="/pricing">Pricing</FooterLink>
               <FooterLink href="/api">API</FooterLink>
-              <FooterLink href="/changelog">Changelog</FooterLink>
+              <FooterLink href="/changelog">Change log</FooterLink>
             </FooterColumn>
 
             <FooterColumn>
@@ -106,16 +106,16 @@ export default function Footer() {
 
         <FooterBottom>
           <Copyright>
-            © 2024 ReceptaAI. All rights reserved.
+            © {new Date().getFullYear()} VoxAI. All rights reserved.
           </Copyright>
           <ContactInfo>
             <ContactItem>
               <Mail size={16} />
-              <span>support@receptaai.com</span>
+              <span>support@vox-ai.com</span>
             </ContactItem>
             <ContactItem>
               <Phone size={16} />
-              <span>+1 (555) 123-4567</span>
+              <span>+1 (333) 123-4567</span>
             </ContactItem>
             <ContactItem>
               <MapPin size={16} />

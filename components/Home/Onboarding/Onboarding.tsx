@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { Button } from 'antd'
 
 /*---> Component <---*/
 export default function Onboarding() {
@@ -28,6 +29,10 @@ export default function Onboarding() {
             immediately. Try it for 30 days risk-free with our money-back
             guarantee.
           </SubTitle>
+          <ButtonsWrapper>
+            <StyledButton>Create an AI Receptionist</StyledButton>
+            <StyledOutlineButton>Want help? Contact us.</StyledOutlineButton>
+          </ButtonsWrapper>
         </TextWrapper>
         <ImageWrapper
           ref={imageRef}
@@ -50,6 +55,12 @@ export default function Onboarding() {
     </MainWrapper>
   )
 }
+
+const ButtonsWrapper = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 20px;
+`
 
 /*---> Styles <---*/
 const MainWrapper = styled.div`
@@ -89,6 +100,7 @@ const SubTitle = styled.div`
   font-size: 24px;
   font-weight: 500;
   color: #282825;
+  margin-bottom: 30px;
 `
 
 const TextWrapper = styled.div`
@@ -116,4 +128,51 @@ const ImageWrapper = styled.div`
   -webkit-mask-composite: destination-in;
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
+`
+
+const StyledButton = styled(Button)`
+  /* border: 1px solid red; */
+  background: linear-gradient(to bottom, #044f71, #0075aa) !important;
+  color: #ffffff !important;
+  border: none;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 28px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 20px;
+
+  &:hover,
+  &:focus {
+    filter: brightness(0.92);
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+  }
+`
+
+const StyledOutlineButton = styled(Button)`
+  background: transparent !important;
+  /* color: #ffffff !important; */
+  border: 2px solid #0075aa !important;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 28px;
+  box-shadow: 0 4px 12px rgba(0, 117, 170, 0.25);
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background: transparent !important; /* keep it transparent */
+    color: black !important;
+    border-color: #00aaff !important; /* slightly brighter border on hover */
+    box-shadow: 0 6px 16px rgba(0, 117, 170, 0.4); /* a bit stronger but same hue */
+  }
+
+  &:active {
+    transform: scale(0.98); /* optional: subtle click effect */
+  }
 `

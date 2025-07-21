@@ -19,18 +19,9 @@ export default function Navbar() {
       setShowShadow(window.scrollY > 0)
     }
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !(menuRef.current as any).contains(event.target)) {
-        setIsMenuOpen(false)
-      }
-    }
-
     window.addEventListener('scroll', handleScroll)
-    document.addEventListener('mousedown', handleClickOutside)
-
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
 
@@ -97,6 +88,11 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
+            onClick={e => {
+              if (e.target === e.currentTarget) {
+                setIsMenuOpen(false)
+              }
+            }}
           >
             <MobileMenuContent>
               <MobileMenuHeader>

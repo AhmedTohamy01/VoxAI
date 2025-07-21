@@ -128,7 +128,7 @@ const ButtonsWrapper = styled.div`
   align-items: center;
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     flex-direction: column;
     gap: 15px;
   }
@@ -157,12 +157,12 @@ const StyledButton = styled(Button)`
   }
 
   @media (max-width: 768px) {
-    min-width: 100%;
     height: 50px;
     font-size: 16px;
   }
 
   @media (max-width: 480px) {
+    min-width: 100%;
     height: 45px;
     font-size: 15px;
   }
@@ -190,7 +190,7 @@ const ImageWrapper = styled.div`
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1150px) {
     width: 100%;
     height: 400px;
     margin: 120px auto 80px auto;

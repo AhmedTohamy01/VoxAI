@@ -2,14 +2,14 @@ export const customersCards = [
   {
     id: 1,
     imageUrl: '/img/customer1.avif',
-    text: 'VoxAI is our inbound sales team. Having a trained and personable voice has transformed our ability to answer the phone and convert callers to clients.',
+    text: 'VoxAI is our inbound sales team. Having a trained and personable voice has transformed our ability to convert callers to clients.',
     name: 'Jeremy Treister',
     company: 'CMIT Solutions',
   },
   {
     id: 2,
     imageUrl: '/img/customer2.avif',
-    text: 'Answering, intake, scheduling, and payments ... the benefits have been enormous. We save 10-15 minutes of staff time with every call they answer.',
+    text: 'Answering, scheduling, and payments. The benefits have been enormous. We save 10-15 minutes with every call they answer.',
     name: 'Sara Kelley',
     company: 'Sibus Law Group',
   },

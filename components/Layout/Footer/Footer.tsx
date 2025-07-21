@@ -25,13 +25,7 @@ export default function Footer() {
   )
 
   return (
-    <FooterWrapper
-      // ref={ref}
-      // as={motion.div}
-      // initial={{ opacity: 0, y: 50 }}
-      // animate={isInView ? { opacity: 1, y: 0 } : {}}
-      // transition={{ duration: 3, ease: 'easeOut' }}
-    >
+    <FooterWrapper>
       <FooterContent>
         {/* Main Content Section */}
         <MainSection>
@@ -176,7 +170,14 @@ export default function Footer() {
       </FooterContent>
 
       {/* Floating Chat Bubble */}
-      <FloatingChatBubble href='/chat' aria-label='Chat with us'>
+      <FloatingChatBubble
+        href='/chat'
+        aria-label='Chat with us'
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2, ease: 'easeOut' }}
+      >
         <MessageCircle size={24} />
       </FloatingChatBubble>
     </FooterWrapper>

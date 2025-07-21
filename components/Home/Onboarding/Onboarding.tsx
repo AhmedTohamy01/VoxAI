@@ -56,12 +56,6 @@ export default function Onboarding() {
   )
 }
 
-const ButtonsWrapper = styled.div`
-  /* border: 1px solid red; */
-  display: flex;
-  gap: 20px;
-`
-
 /*---> Styles <---*/
 const MainWrapper = styled.div`
   /* border: 1px solid red; */
@@ -77,6 +71,15 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 30px;
+
+  @media (max-width: 1024px) {
+    padding: 40px;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
 `
 
 const Head = styled.div`
@@ -93,6 +96,14 @@ const Title = styled.div`
   font-weight: 700;
   color: #282825;
   margin-bottom: 20px;
+
+  @media (max-width: 1150px) {
+    font-size: 38px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 32px;
+  }
 `
 
 const SubTitle = styled.div`
@@ -101,11 +112,19 @@ const SubTitle = styled.div`
   font-weight: 500;
   color: #282825;
   margin-bottom: 30px;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
 `
 
 const TextWrapper = styled.div`
   /* border: 1px solid red; */
   width: 50%;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `
 
 const ImageWrapper = styled.div`
@@ -128,6 +147,21 @@ const ImageWrapper = styled.div`
   -webkit-mask-composite: destination-in;
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+`
+
+const ButtonsWrapper = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 580px) {
+    flex-direction: column;
+    gap: 0px;
+  }
 `
 
 const StyledButton = styled(Button)`

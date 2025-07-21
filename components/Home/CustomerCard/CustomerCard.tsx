@@ -51,7 +51,6 @@ const MainWrapper = styled.div`
   background-color: white;
   width: 380px;
   min-width: 380px;
-  height: 235px;
   border-radius: 12px;
   padding: 20px;
   background-color: #fdfdfd;
@@ -62,21 +61,19 @@ const MainWrapper = styled.div`
   @media (max-width: 1024px) {
     width: 350px;
     min-width: 350px;
-    height: 220px;
+    min-height: 220px;
   }
 
   @media (max-width: 768px) {
     width: 100%;
     min-width: unset;
     max-width: 400px;
-    height: auto;
-    min-height: 200px;
+    min-height: 0px;
   }
 
   @media (max-width: 480px) {
     padding: 15px;
     gap: 12px;
-    min-height: 180px;
   }
 `
 

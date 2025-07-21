@@ -43,25 +43,22 @@ export default function Numbers() {
       <NumberBlock>
         <Number>{count1}%</Number>
         <Text>
-          of callers hang up if they reach your
-          <br /> business voicemail — and call your
-          <br /> competitors instead
+          of callers hang up if they reach your business voicemail — and call
+          your competitors instead
         </Text>
       </NumberBlock>
       <NumberBlock>
         <Number>${count2}K+</Number>
         <Text>
-          in expected costs to hire and train an
-          <br /> in-house receptionist — who only
-          <br /> answers during their working hours
+          in expected costs to hire and train an in-house receptionist — who
+          only answers during their working hours
         </Text>
       </NumberBlock>
       <NumberBlock>
         <Number>{count3}/7</Number>
         <Text>
-          call coverage when you sign up with
-          <br /> human or AI receptionists available
-          <br /> to answer every time
+          call coverage when you sign up with human or AI receptionists
+          available to answer every time
         </Text>
       </NumberBlock>
     </MainWrapper>
@@ -78,21 +75,21 @@ const MainWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1100px) {
     padding: 60px 40px;
     gap: 40px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     flex-direction: column;
     padding: 60px 20px;
-    gap: 50px;
+    gap: 20px;
     align-items: center;
   }
 
   @media (max-width: 480px) {
     padding: 40px 15px;
-    gap: 40px;
+    /* gap: 40px; */
   }
 `
 
@@ -141,19 +138,25 @@ const Text = styled.div`
   text-align: center;
   font-size: 20px;
   line-height: 1.5;
+  max-width: 350px;
+  margin: 0 auto;
 
-  @media (max-width: 1024px) {
-    font-size: 18px;
+  @media (max-width: 1300px) {
+    max-width: 300px;
   }
 
-  @media (max-width: 768px) {
-    font-size: 16px;
-    br {
-      display: none;
-    }
+  @media (max-width: 1100px) {
+    font-size: 18px;
+    max-width: 280px;
+  }
+
+  @media (max-width: 800px) {
+    /* font-size: 16px; */
+    max-width: 400px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px;
+    font-size: 16px;
+    max-width: 280px;
   }
 `

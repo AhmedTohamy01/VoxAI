@@ -46,7 +46,7 @@ export default function Testimonials() {
 
 /*---> Styles <---*/
 const MainWrapper = styled.div`
-  /* border: 1px solid red; */
+  /* border: 1px solid blue; */
   background-color: white;
   height: fit-content;
 `
@@ -56,6 +56,10 @@ const ContentWrapper = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 80px 80px 40px 80px;
+
+  @media (max-width: 1024px) {
+    padding: 40px;
+  }
 
   @media (max-width: 768px) {
     padding: 60px 20px 40px 20px;

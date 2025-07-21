@@ -27,7 +27,7 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll)
     document.addEventListener('mousedown', handleClickOutside)
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
       document.removeEventListener('mousedown', handleClickOutside)
@@ -56,9 +56,9 @@ export default function Navbar() {
             height={50}
           />
         </Link>
-        
+
         {/* Desktop Phone and Login */}
-        <PhoneLoginWrapper className="desktop-only">
+        <PhoneLoginWrapper className='desktop-only'>
           <a href='tel:+1 555 123 4567' aria-label='Call us'>
             <PhoneIcon />
           </a>
@@ -69,17 +69,17 @@ export default function Navbar() {
         </PhoneLoginWrapper>
 
         {/* Mobile Menu Button */}
-        <MenuButton 
-          className="mobile-only"
+        <MenuButton
+          className='mobile-only'
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label='Toggle menu'
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </MenuButton>
       </ContentWrapper>
-      
+
       {/* Desktop Navigation Links */}
-      <LinksWrapper className="desktop-only">
+      <LinksWrapper className='desktop-only'>
         <NavLink>Products</NavLink>
         <NavLink>Solutions</NavLink>
         <NavLink>Pricing</NavLink>
@@ -112,26 +112,35 @@ export default function Navbar() {
                   <X size={24} />
                 </CloseButton>
               </MobileMenuHeader>
-              
-              <MobileNavLinks>
-                <MobileNavLink onClick={() => setIsMenuOpen(false)}>Products</MobileNavLink>
-                <MobileNavLink onClick={() => setIsMenuOpen(false)}>Solutions</MobileNavLink>
-                <MobileNavLink onClick={() => setIsMenuOpen(false)}>Pricing</MobileNavLink>
-                <MobileNavLink onClick={() => setIsMenuOpen(false)}>Partners</MobileNavLink>
-                <MobileNavLink onClick={() => setIsMenuOpen(false)}>Company</MobileNavLink>
-              </MobileNavLinks>
 
-              <MobileContactSection>
-                <MobilePhoneSection>
-                  <a href='tel:+1 555 123 4567' aria-label='Call us'>
-                    <PhoneIcon />
-                  </a>
-                  <a href='tel:+1 555 123 4567' aria-label='Call us'>
-                    <PhoneNumber>+1 (333) 123-4567</PhoneNumber>
-                  </a>
-                </MobilePhoneSection>
+              <MobileNavLinks>
+                <MobileNavLink onClick={() => setIsMenuOpen(false)}>
+                  Products
+                </MobileNavLink>
+                <MobileNavLink onClick={() => setIsMenuOpen(false)}>
+                  Solutions
+                </MobileNavLink>
+                <MobileNavLink onClick={() => setIsMenuOpen(false)}>
+                  Pricing
+                </MobileNavLink>
+                <MobileNavLink onClick={() => setIsMenuOpen(false)}>
+                  Partners
+                </MobileNavLink>
+                <MobileNavLink onClick={() => setIsMenuOpen(false)}>
+                  Company
+                </MobileNavLink>
+                <MobileNavLink onClick={() => setIsMenuOpen(false)}>
+                  <MobilePhoneSection>
+                    <a href='tel:+1 555 123 4567' aria-label='Call us'>
+                      <PhoneIcon />
+                    </a>
+                    <a href='tel:+1 555 123 4567' aria-label='Call us'>
+                      <PhoneNumber>+1 (333) 123-4567</PhoneNumber>
+                    </a>
+                  </MobilePhoneSection>
+                </MobileNavLink>
                 <MobileLoginButton>Login</MobileLoginButton>
-              </MobileContactSection>
+              </MobileNavLinks>
             </MobileMenuContent>
           </MobileMenuOverlay>
         )}
@@ -152,6 +161,10 @@ const MainWrapper = styled.div<{ $showshadow: boolean }>`
   transition: box-shadow 0.3s ease;
   box-shadow: ${({ $showshadow }) =>
     $showshadow ? '0 4px 10px rgba(255, 255, 255, 0.08)' : 'none'};
+
+  @media (max-width: 1024px) {
+    padding: 8px 40px 30px 40px;
+  }
 
   @media (max-width: 768px) {
     padding: 8px 20px 30px 20px;
@@ -246,7 +259,7 @@ const MenuButton = styled.button`
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1150px) {
     display: block;
   }
 `
@@ -261,7 +274,7 @@ const MobileMenuOverlay = styled.div`
   z-index: 1000;
   backdrop-filter: blur(4px);
 
-  @media (min-width: 769px) {
+  @media (min-width: 1151px) {
     display: none;
   }
 `
@@ -302,30 +315,27 @@ const CloseButton = styled.button`
 `
 
 const MobileNavLinks = styled.div`
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-bottom: 40px;
+  margin-top: -20px;
 `
 
 const MobileNavLink = styled.div`
+  /* border: 1px solid red; */
   color: #f5f0e7;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  padding: 12px 0;
+  padding: 12px 0px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: color 0.3s ease;
 
   &:hover {
     color: #0075aa;
   }
-`
-
-const MobileContactSection = styled.div`
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
 `
 
 const MobilePhoneSection = styled.div`
@@ -358,13 +368,13 @@ const MobileLoginButton = styled(Button)`
 // Responsive utility classes
 const globalStyles = `
   .desktop-only {
-    @media (max-width: 768px) {
+    @media (max-width: 1150px) {
       display: none !important;
     }
   }
 
   .mobile-only {
-    @media (min-width: 769px) {
+    @media (min-width: 1151px) {
       display: none !important;
     }
   }

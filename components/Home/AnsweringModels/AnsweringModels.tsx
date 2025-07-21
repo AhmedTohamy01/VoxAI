@@ -72,6 +72,10 @@ const MainWrapper = styled.div`
   padding: 80px;
   background-color: #1a1a1a;
 
+  @media (max-width: 1024px) {
+    padding: 80px 40px;
+  }
+
   @media (max-width: 768px) {
     padding: 60px 20px;
   }
@@ -155,7 +159,7 @@ const CardsWrapper = styled.div`
     gap: 30px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     gap: 30px;
   }

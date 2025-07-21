@@ -228,7 +228,7 @@ const LinksWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 25px;
-  margin-top: -35px;
+  margin-top: -25px;
 
   @media (max-width: 1100px) {
     padding-right: 50px;

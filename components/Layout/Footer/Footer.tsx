@@ -341,6 +341,7 @@ const FloatingChatBubble = styled(Link)`
   box-shadow: 0 4px 20px rgba(4, 79, 113, 0.3);
   transition: all 0.3s ease;
   z-index: 1000;
+  cursor: pointer;
 
   /* Position relative to the 1440px max-width container */
   left: calc(50% + 720px - 30px);

@@ -3,17 +3,17 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'ReceptaAI | AI-Powered Call Center Solutions',
-    template: '%s | ReceptaAI',
+    default: 'VoxAI | AI-Powered Call Center Solutions',
+    template: '%s | VoxAI',
   },
   description:
-    'Transform your customer service with ReceptaAI — the next-generation AI call center solution. 24/7 intelligent agents, seamless integration, and superior customer experience.',
+    'Transform your customer service with VoxAI — the next-generation AI call center solution. 24/7 intelligent agents, seamless integration, and superior customer experience.',
   openGraph: {
-    title: 'ReceptaAI | AI-Powered Call Center Solutions',
+    title: 'VoxAI | AI-Powered Call Center Solutions',
     description:
-      'ReceptaAI provides AI-driven call center solutions for modern businesses.',
-    url: 'https://www.receptaai.com',
-    siteName: 'ReceptaAI',
+      'VoxAI provides AI-driven call center solutions for modern businesses.',
+    url: 'https://www.VoxAI.com',
+    siteName: 'VoxAI',
     type: 'website',
   } satisfies Metadata['openGraph'],
   robots: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
   },
   alternates: {
-    canonical: 'https://www.receptaai.com',
+    canonical: 'https://www.VoxAI.com',
   },
 }
 

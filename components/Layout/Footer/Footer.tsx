@@ -120,7 +120,7 @@ export default function Footer() {
             <Link href='/'>
               <Image
                 src='/img/recepta-logo.avif'
-                alt='ReceptaAI Logo'
+                alt='VoxAI Logo'
                 width={50}
                 height={50}
               />

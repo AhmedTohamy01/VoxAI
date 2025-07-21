@@ -5,6 +5,14 @@ import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { Linkedin, Facebook, Instagram, MessageCircle } from 'lucide-react'
 import { useRef } from 'react'
+import { Pacifico } from 'next/font/google'
+
+const pacifico = Pacifico({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal'],
+  display: 'swap',
+})
 
 /*---> Component <---*/
 export default function Footer() {
@@ -117,13 +125,16 @@ export default function Footer() {
         {/* Bottom Section */}
         <BottomSection>
           <BottomLeft>
-            <Link href='/'>
+            {/* <Link href='/'>
               <Image
                 src='/img/recepta-logo.avif'
                 alt='VoxAI Logo'
                 width={50}
                 height={50}
               />
+            </Link> */}
+            <Link href='/'>
+              <LogoText className={pacifico.className}>Vox.ai</LogoText>
             </Link>
             <CopyrightText>
               VoxAI, INC. ©{new Date().getFullYear()} ALL RIGHTS RESERVED
@@ -257,7 +268,7 @@ const BottomSection = styled.div`
   padding: 30px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     flex-direction: column;
     gap: 20px;
     text-align: center;
@@ -268,6 +279,11 @@ const BottomLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (max-width: 800px) {
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 const CopyrightText = styled.p`
@@ -361,4 +377,18 @@ const FloatingChatBubble = styled(Link)`
       transform: scale(1.1);
     }
   }
+`
+
+const LogoText = styled.span`
+  font-size: 2.2rem;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #044f71, #0075aa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 `

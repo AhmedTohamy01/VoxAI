@@ -6,6 +6,14 @@ import { Button } from 'antd'
 import { Phone, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Pacifico } from 'next/font/google'
+
+const pacifico = Pacifico({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal'],
+  display: 'swap',
+})
 
 /*---> Component <---*/
 export default function Navbar() {
@@ -39,13 +47,16 @@ export default function Navbar() {
       transition={{ duration: 2, ease: 'easeOut' }}
     >
       <ContentWrapper>
-        <Link href={'/'}>
+        {/* <Link href={'/'}>
           <Image
             src='/img/recepta-logo.avif'
             alt='company logo'
             width={50}
             height={50}
           />
+        </Link> */}
+        <Link href={'/'}>
+          <LogoText className={pacifico.className}>Vox.ai</LogoText>
         </Link>
 
         {/* Desktop Phone and Login */}
@@ -88,7 +99,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            onClick={e => {
+            onClick={(e) => {
               if (e.target === e.currentTarget) {
                 setIsMenuOpen(false)
               }
@@ -96,13 +107,16 @@ export default function Navbar() {
           >
             <MobileMenuContent>
               <MobileMenuHeader>
-                <Link href={'/'} onClick={() => setIsMenuOpen(false)}>
+                {/* <Link href={'/'} onClick={() => setIsMenuOpen(false)}>
                   <Image
                     src='/img/recepta-logo.avif'
                     alt='company logo'
                     width={40}
                     height={40}
                   />
+                </Link> */}
+                <Link href={'/'} onClick={() => setIsMenuOpen(false)}>
+                  <LogoText className={pacifico.className}>Vox.ai</LogoText>
                 </Link>
                 <CloseButton onClick={toggleMenu}>
                   <X size={24} />
@@ -358,6 +372,23 @@ const MobileLoginButton = styled(Button)`
     filter: brightness(0.92);
     color: #ffffff !important;
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+  }
+`
+
+const LogoText = styled.span`
+  font-size: 2.2rem;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #044f71, #0075aa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 1.7rem;
   }
 `
 

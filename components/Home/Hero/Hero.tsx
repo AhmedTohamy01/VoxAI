@@ -31,24 +31,26 @@ export default function Hero() {
           <StyledButton>Human Receptionists</StyledButton>
         </ButtonsWrapper>
       </TextWrapper>
-      <ImageWrapper
-        ref={imageRef}
-        as={motion.div}
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 3, ease: 'easeOut' }}
-      >
-        <Image
-          src='/img/ai-agent-4.avif'
-          alt='hero image'
-          fill
-          style={{
-            objectFit: 'cover',
-            zIndex: -1,
-            objectPosition: 'center',
-          }}
-        />
-      </ImageWrapper>
+      <ImageMaskWrapper>
+        <ImageWrapper
+          ref={imageRef}
+          as={motion.div}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 3, ease: 'easeOut' }}
+        >
+          <Image
+            src='/img/ai-agent-4.avif'
+            alt='hero image'
+            fill
+            style={{
+              objectFit: 'cover',
+              zIndex: -1,
+              objectPosition: 'center',
+            }}
+          />
+        </ImageWrapper>
+      </ImageMaskWrapper>
     </MainWrapper>
   )
 }
@@ -168,27 +170,27 @@ const StyledButton = styled(Button)`
   }
 `
 
-const ImageWrapper = styled.div`
-  /* border: 1px solid red; */
+const ImageMaskWrapper = styled.div`
   position: relative;
-  z-index: -1;
   width: 1000px;
   height: 450px;
   margin: 150px auto 100px auto;
+  z-index: -1;
+  overflow: hidden;
 
-  /* Dissolve all edges (top, bottom, left, right) into background */
-  mask-image: linear-gradient(to top, transparent 0%, black 20%),
-    linear-gradient(to bottom, transparent 0%, black 20%),
-    linear-gradient(to left, transparent 0%, black 20%),
-    linear-gradient(to right, transparent 0%, black 20%);
-  mask-composite: intersect;
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%),
-    linear-gradient(to bottom, transparent 0%, black 20%),
-    linear-gradient(to left, transparent 0%, black 20%),
-    linear-gradient(to right, transparent 0%, black 20%);
-  -webkit-mask-composite: destination-in;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background:
+      linear-gradient(to top, #282825 0%, transparent 20%),
+      linear-gradient(to bottom, #282825 0%, transparent 20%),
+      linear-gradient(to left, #282825 0%, transparent 20%),
+      linear-gradient(to right, #282825 0%, transparent 20%);
+    background-blend-mode: lighten;
+  }
 
   @media (max-width: 1150px) {
     width: 100%;
@@ -205,4 +207,9 @@ const ImageWrapper = styled.div`
     height: 250px;
     margin: 60px auto 40px auto;
   }
+`
+
+const ImageWrapper = styled(motion.div)`
+  position: absolute;
+  inset: 0;
 `

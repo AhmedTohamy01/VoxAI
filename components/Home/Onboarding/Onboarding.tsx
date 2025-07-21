@@ -34,23 +34,25 @@ export default function Onboarding() {
             <StyledOutlineButton>Want help? Contact us.</StyledOutlineButton>
           </ButtonsWrapper>
         </TextWrapper>
-        <ImageWrapper
-          ref={imageRef}
-          as={motion.div}
-          initial={{ opacity: 0 }}
-          animate={isImageRefInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 3, ease: 'easeOut' }}
-        >
-          <Image
-            src='/img/ai-agent-5.avif'
-            alt='Ai agent image'
-            fill
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          />
-        </ImageWrapper>
+        <ImageMaskWrapper>
+          <ImageWrapper
+            ref={imageRef}
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={isImageRefInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 3, ease: 'easeOut' }}
+          >
+            <Image
+              src='/img/ai-agent-5.avif'
+              alt='Ai agent image'
+              fill
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+            />
+          </ImageWrapper>
+        </ImageMaskWrapper>
       </ContentWrapper>
     </MainWrapper>
   )
@@ -127,30 +129,35 @@ const TextWrapper = styled.div`
   }
 `
 
-const ImageWrapper = styled.div`
-  /* border: 1px solid red; */
+const ImageMaskWrapper = styled.div`
   position: relative;
   height: 300px;
   width: 500px;
   width: 50%;
+  overflow: hidden;
 
-  /* Dissolve all edges (top, bottom, left, right) into background */
-  mask-image: linear-gradient(to top, transparent 0%, black 20%),
-    linear-gradient(to bottom, transparent 0%, black 20%),
-    linear-gradient(to left, transparent 0%, black 20%),
-    linear-gradient(to right, transparent 0%, black 20%);
-  mask-composite: intersect;
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%),
-    linear-gradient(to bottom, transparent 0%, black 20%),
-    linear-gradient(to left, transparent 0%, black 20%),
-    linear-gradient(to right, transparent 0%, black 20%);
-  -webkit-mask-composite: destination-in;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background:
+      linear-gradient(to top, #fff 0%, transparent 20%),
+      linear-gradient(to bottom, #fff 0%, transparent 20%),
+      linear-gradient(to left, #fff 0%, transparent 20%),
+      linear-gradient(to right, #fff 0%, transparent 20%);
+    background-blend-mode: lighten;
+  }
 
   @media (max-width: 1024px) {
     width: 100%;
   }
+`
+
+const ImageWrapper = styled(motion.div)`
+  position: absolute;
+  inset: 0;
 `
 
 const ButtonsWrapper = styled.div`

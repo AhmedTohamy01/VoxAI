@@ -4,6 +4,7 @@ import Footer from '@/components/Layout/Footer/Footer'
 import StyledComponentsRegistry from '@/lib/StyledComponentsRegistry'
 import { Roboto } from 'next/font/google'
 import styled from 'styled-components'
+import { usePathname } from 'next/navigation'
 import './globals.css'
 
 const roboto = Roboto({
@@ -18,15 +19,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const pathname = usePathname()
+  const isStudioRoute = pathname?.startsWith('/studio')
+
   return (
     <html lang='en'>
       <body className={roboto.className}>
         <StyledComponentsRegistry>
-          <StickyNavbarWrapper>
-            <Navbar />
-          </StickyNavbarWrapper>
+          {!isStudioRoute && (
+            <StickyNavbarWrapper>
+              <Navbar />
+            </StickyNavbarWrapper>
+          )}
           <main>{children}</main>
-          <Footer />
+          {!isStudioRoute && <Footer />}
         </StyledComponentsRegistry>
       </body>
     </html>

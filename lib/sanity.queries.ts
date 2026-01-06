@@ -16,6 +16,14 @@ export interface HeroData {
   heroImageAlt?: string
 }
 
+export interface CallCoverageData {
+  head: string
+  title: string
+  subtitle: string
+  imageUrl: string
+  imageAlt?: string
+}
+
 export async function getHeroData(): Promise<HeroData | null> {
   try {
     const hero = await client.fetch(`
@@ -59,6 +67,39 @@ export async function getHeroData(): Promise<HeroData | null> {
     }
   } catch (error) {
     console.error('Error fetching hero data:', error)
+    return null
+  }
+}
+
+export async function getCallCoverageData(): Promise<CallCoverageData | null> {
+  try {
+    const callCoverage = await client.fetch(`
+      *[_type == "callCoverage"][0] {
+        head,
+        title,
+        subtitle,
+        image
+      }
+    `)
+
+    if (!callCoverage) {
+      return null
+    }
+
+    // Build image URL using Sanity's image URL builder
+    const imageUrl = callCoverage.image
+      ? urlFor(callCoverage.image).width(500).height(300).url()
+      : ''
+
+    return {
+      head: callCoverage.head || '',
+      title: callCoverage.title || '',
+      subtitle: callCoverage.subtitle || '',
+      imageUrl: imageUrl,
+      imageAlt: callCoverage.image?.alt || 'Call coverage image',
+    }
+  } catch (error) {
+    console.error('Error fetching call coverage data:', error)
     return null
   }
 }

@@ -4,16 +4,17 @@ import Hero from '@/components/Home/Hero/Hero'
 import Numbers from '@/components/Home/Numbers/Numbers'
 import Onboarding from '@/components/Home/Onboarding/Onboarding'
 import Testimonials from '@/components/Home/Testimonials/Testimonials'
-import { getHeroData } from '@/lib/sanity.queries'
+import { getHeroData, getCallCoverageData } from '@/lib/sanity.queries'
 
 /*---> Component <---*/
 export default async function HomeCompound() {
   const heroData = await getHeroData()
+  const callCoverageData = await getCallCoverageData()
 
   return (
     <>
       <Hero heroData={heroData} />
-      <CallCoverage />
+      <CallCoverage callCoverageData={callCoverageData} />
       <Testimonials />
       <Numbers />
       <AnsweringModels />

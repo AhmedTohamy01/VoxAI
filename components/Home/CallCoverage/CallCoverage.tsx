@@ -3,11 +3,23 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { CallCoverageData } from '@/lib/sanity.queries'
+
+interface CallCoverageProps {
+  callCoverageData: CallCoverageData | null
+}
 
 /*---> Component <---*/
-export default function CallCoverage() {
+export default function CallCoverage({ callCoverageData }: CallCoverageProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  // Fallback data if Sanity data is not available
+  const head = callCoverageData?.head || '24/7/365 ANSWERING'
+  const title = callCoverageData?.title || 'Total call coverage, powered by AI + humans'
+  const subtitle = callCoverageData?.subtitle || 'Whether it\'s after-hours or the midday rush, AI Receptionist and our live agents ensure your calls are always answered, so you never lose a lead.'
+  const imageUrl = callCoverageData?.imageUrl || '/img/ai-agent-2.webp'
+  const imageAlt = callCoverageData?.imageAlt || 'Ai agent image'
 
   return (
     <MainWrapper>
@@ -19,12 +31,15 @@ export default function CallCoverage() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 3, ease: 'easeOut' }}
         >
-          <Head>24/7/365 ANSWERING</Head>
-          <Title>Total call coverage, powered by AI + humans</Title>
+          <Head>{head}</Head>
+          <Title>{title}</Title>
           <SubTitle>
-            Whether it's after-hours or the midday rush, AI Receptionist and our
-            live agents ensure your calls are always answered, so you never lose
-            a lead.
+            {subtitle.split('\n').map((line, index, array) => (
+              <span key={index}>
+                {line}
+                {index < array.length - 1 && <br />}
+              </span>
+            ))}
           </SubTitle>
         </TextWrapper>
         <ImageMaskWrapper>
@@ -36,8 +51,8 @@ export default function CallCoverage() {
             transition={{ duration: 3, ease: 'easeOut' }}
           >
             <Image
-              src='/img/ai-agent-2.webp'
-              alt='Ai agent image'
+              src={imageUrl}
+              alt={imageAlt}
               fill
               style={{
                 objectFit: 'cover',

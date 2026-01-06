@@ -2,14 +2,30 @@
 import styled from 'styled-components'
 import { Button } from 'antd'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { HeroData } from '@/lib/sanity.queries'
+
+interface HeroProps {
+  heroData: HeroData | null
+}
 
 /*---> Component <---*/
-export default function Hero() {
+export default function Hero({ heroData }: HeroProps) {
   const textRef = useRef(null)
   const imageRef = useRef(null)
   const isInView = useInView(imageRef, { once: true, margin: '-100px' })
+
+  // Fallback data if Sanity data is not available
+  const title = heroData?.title || 'Never miss another customer'
+  const subtitle = heroData?.subtitle || 'Get the #1 rated receptionist service designed specifically for small businesses. Delivering excellence in every call.'
+  const primaryButtonText = heroData?.primaryButton?.text || 'AI Receptionist'
+  const primaryButtonUrl = heroData?.primaryButton?.url || '#'
+  const secondaryButtonText = heroData?.secondaryButton?.text || 'Human Receptionists'
+  const secondaryButtonUrl = heroData?.secondaryButton?.url || '#'
+  const heroImageUrl = heroData?.heroImageUrl || '/img/ai-agent-4.avif'
+  const heroImageAlt = heroData?.heroImageAlt || 'hero image'
 
   return (
     <MainWrapper>
@@ -20,15 +36,22 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
       >
-        <Title>Never miss another customer</Title>
+        <Title>{title}</Title>
         <SubTitle>
-          Get the #1 rated receptionist service designed specifically
-          <br /> for small businesses.
-          <br /> Delivering excellence in every call.
+          {subtitle.split('\n').map((line, index, array) => (
+            <span key={index}>
+              {line}
+              {index < array.length - 1 && <br />}
+            </span>
+          ))}
         </SubTitle>
         <ButtonsWrapper>
-          <StyledButton>AI Receptionist</StyledButton>
-          <StyledButton>Human Receptionists</StyledButton>
+          <Link href={primaryButtonUrl}>
+            <StyledButton>{primaryButtonText}</StyledButton>
+          </Link>
+          <Link href={secondaryButtonUrl}>
+            <StyledButton>{secondaryButtonText}</StyledButton>
+          </Link>
         </ButtonsWrapper>
       </TextWrapper>
       <ImageMaskWrapper>
@@ -40,8 +63,8 @@ export default function Hero() {
           transition={{ duration: 3, ease: 'easeOut' }}
         >
           <Image
-            src='/img/ai-agent-4.avif'
-            alt='hero image'
+            src={heroImageUrl}
+            alt={heroImageAlt}
             fill
             style={{
               objectFit: 'cover',
@@ -150,6 +173,8 @@ const StyledButton = styled(Button)`
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
   transition: box-shadow 0.3s ease;
   padding: 0px 20px;
+  text-decoration: none;
+  display: inline-block;
 
   &:hover,
   &:focus {

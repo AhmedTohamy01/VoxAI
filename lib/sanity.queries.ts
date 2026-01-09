@@ -24,6 +24,21 @@ export interface CallCoverageData {
   imageAlt?: string
 }
 
+export interface CustomerCard {
+  imageUrl: string
+  imageAlt?: string
+  text: string
+  name: string
+  company: string
+}
+
+export interface TestimonialsData {
+  head: string
+  title: string
+  subtitle: string
+  customerCards: CustomerCard[]
+}
+
 export async function getHeroData(): Promise<HeroData | null> {
   try {
     const hero = await client.fetch(`
@@ -100,6 +115,51 @@ export async function getCallCoverageData(): Promise<CallCoverageData | null> {
     }
   } catch (error) {
     console.error('Error fetching call coverage data:', error)
+    return null
+  }
+}
+
+export async function getTestimonialsData(): Promise<TestimonialsData | null> {
+  try {
+    const testimonials = await client.fetch(`
+      *[_type == "testimonials"][0] {
+        head,
+        title,
+        subtitle,
+        customerCards[] {
+          image,
+          text,
+          name,
+          company
+        }
+      }
+    `)
+
+    if (!testimonials) {
+      return null
+    }
+
+    // Build image URLs for each customer card
+    const customerCards: CustomerCard[] = testimonials.customerCards
+      ? testimonials.customerCards.map((card: any) => ({
+          imageUrl: card.image
+            ? urlFor(card.image).width(65).height(65).url()
+            : '',
+          imageAlt: card.image?.alt || 'customer photo',
+          text: card.text || '',
+          name: card.name || '',
+          company: card.company || '',
+        }))
+      : []
+
+    return {
+      head: testimonials.head || '',
+      title: testimonials.title || '',
+      subtitle: testimonials.subtitle || '',
+      customerCards: customerCards,
+    }
+  } catch (error) {
+    console.error('Error fetching testimonials data:', error)
     return null
   }
 }

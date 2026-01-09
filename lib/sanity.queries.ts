@@ -49,6 +49,23 @@ export interface NumbersData {
   stats: Stat[]
 }
 
+export interface AnsweringModel {
+  head: string
+  title: string
+  price: string
+  subTitle: string
+  benefits: string[]
+  modelType: string
+  questionText: string
+}
+
+export interface AnsweringModelsData {
+  head: string
+  title: string
+  subtitle: string
+  models: AnsweringModel[]
+}
+
 export async function getHeroData(): Promise<HeroData | null> {
   try {
     const hero = await client.fetch(`
@@ -203,6 +220,53 @@ export async function getNumbersData(): Promise<NumbersData | null> {
     }
   } catch (error) {
     console.error('Error fetching numbers data:', error)
+    return null
+  }
+}
+
+export async function getAnsweringModelsData(): Promise<AnsweringModelsData | null> {
+  try {
+    const answeringModels = await client.fetch(`
+      *[_type == "answeringModels"][0] {
+        head,
+        title,
+        subtitle,
+        models[] {
+          head,
+          title,
+          price,
+          subTitle,
+          benefits,
+          modelType,
+          questionText
+        }
+      }
+    `)
+
+    if (!answeringModels) {
+      return null
+    }
+
+    const models: AnsweringModel[] = answeringModels.models
+      ? answeringModels.models.map((model: any) => ({
+          head: model.head || '',
+          title: model.title || '',
+          price: model.price || '',
+          subTitle: model.subTitle || '',
+          benefits: model.benefits || [],
+          modelType: model.modelType || '',
+          questionText: model.questionText || '',
+        }))
+      : []
+
+    return {
+      head: answeringModels.head || '',
+      title: answeringModels.title || '',
+      subtitle: answeringModels.subtitle || '',
+      models: models,
+    }
+  } catch (error) {
+    console.error('Error fetching answering models data:', error)
     return null
   }
 }

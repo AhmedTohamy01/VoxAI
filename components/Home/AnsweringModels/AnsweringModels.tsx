@@ -3,23 +3,61 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import styled from 'styled-components'
 import AnsweringModelCard from '../AnsweringModelCard/AnsweringModelCard'
+import { AnsweringModelsData } from '@/lib/sanity.queries'
+
+interface AnsweringModelsProps {
+  answeringModelsData: AnsweringModelsData | null
+}
 
 /*---> Component <---*/
-export default function AnsweringModels() {
+export default function AnsweringModels({
+  answeringModelsData,
+}: AnsweringModelsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const aiBenefits = [
-    'Instant responses',
-    'Most cost-effective option',
-    'Human agents on standby',
+  // Fallback data if Sanity data is not available
+  const head = answeringModelsData?.head || 'TAILORED FOR YOUR NEEDS'
+  const title =
+    answeringModelsData?.title ||
+    'Choose from AI-first or human-first answering'
+  const subtitle =
+    answeringModelsData?.subtitle ||
+    'No matter who answers, every plan includes essentials like 24/7 call coverage, free spam blocking, lead qualification, and new client intake, so you never miss what matters.'
+
+  const defaultModels = [
+    {
+      head: 'AI RECEPTIONIST',
+      title: 'Efficient & Affordable',
+      price: '97.50',
+      subTitle:
+        'AI-first answering is perfect for simple intake, scheduling new appointments, and handling general inquiries at any call volume.',
+      benefits: [
+        'Instant responses',
+        'Most cost-effective option',
+        'Human agents on standby',
+      ],
+      modelType: 'AI Receptionist',
+      questionText: 'Why choose AI-first?',
+    },
+    {
+      head: 'Virtual receptionists',
+      title: 'Friendly & Engaging',
+      price: '292.50',
+      subTitle:
+        'Human receptionists handle every call with empathy, professionalism, and personalized service from start to finish — no matter how complicated.',
+      benefits: [
+        'Warm human interaction',
+        'Complex call handling',
+        'Client onboarding with empathy',
+      ],
+      modelType: 'Virtual Receptionist',
+      questionText: 'Why choose human-first?',
+    },
   ]
 
-  const humanBenefits = [
-    'Warm human interaction',
-    'Complex call handling',
-    'Client onboarding with empathy',
-  ]
+  const models = answeringModelsData?.models || defaultModels
+
   return (
     <MainWrapper>
       <TextWrapper
@@ -29,36 +67,37 @@ export default function AnsweringModels() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 3, ease: 'easeOut' }}
       >
-        <Head>TAILORED FOR YOUR NEEDS</Head>
+        <Head>{head}</Head>
         <Title>
-          Choose from AI-first or
-          <br /> human-first answering
+          {title.split('\n').map((line, index, array) => (
+            <span key={index}>
+              {line}
+              {index < array.length - 1 && <br />}
+            </span>
+          ))}
         </Title>
         <SubTitle>
-          No matter who answers, every plan includes essentials like
-          <br /> 24/7 call coverage, free spam blocking, lead qualification, and
-          <br /> new client intake, so you never miss what matters.
+          {subtitle.split('\n').map((line, index, array) => (
+            <span key={index}>
+              {line}
+              {index < array.length - 1 && <br />}
+            </span>
+          ))}
         </SubTitle>
       </TextWrapper>
       <CardsWrapper>
-        <AnsweringModelCard
-          head='AI RECEPTIONIST'
-          title='Efficient & Affordable'
-          price='97.50'
-          subTitle='AI-first answering is perfect for simple intake, scheduling new appointments, and handling general inquiries at any call volume.'
-          benefits={aiBenefits}
-          modelType='AI Receptionist'
-          questionText='Why choose AI-first?'
-        />
-        <AnsweringModelCard
-          head='Virtual receptionists'
-          title='Friendly & Engaging'
-          price='292.50'
-          subTitle='Human receptionists handle every call with empathy, professionalism, and personalized service from start to finish — no matter how complicated.'
-          benefits={humanBenefits}
-          modelType='Virtual Receptionist'
-          questionText='Why choose human-first?'
-        />
+        {models.map((model, index) => (
+          <AnsweringModelCard
+            key={index}
+            head={model.head}
+            title={model.title}
+            price={model.price}
+            subTitle={model.subTitle}
+            benefits={model.benefits}
+            modelType={model.modelType}
+            questionText={model.questionText}
+          />
+        ))}
       </CardsWrapper>
     </MainWrapper>
   )

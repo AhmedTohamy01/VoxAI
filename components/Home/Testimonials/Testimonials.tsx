@@ -3,12 +3,27 @@ import styled from 'styled-components'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import CustomerCard from '../CustomerCard/CustomerCard'
+import { TestimonialsData } from '@/lib/sanity.queries'
 import { customersCards } from '../../../utils/constants'
 
+interface TestimonialsProps {
+  testimonialsData: TestimonialsData | null
+}
+
 /*---> Component <---*/
-export default function Testimonials() {
+export default function Testimonials({ testimonialsData }: TestimonialsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  // Fallback data if Sanity data is not available
+  const head = testimonialsData?.head || 'IMMEDITAE IMPACT'
+  const title = testimonialsData?.title || 'Trusted by 3,500+ growing businesses'
+  const subtitle =
+    testimonialsData?.subtitle ||
+    'Unblock growth with call handling that fits your business — and your clients. From answering and screening to qualification and scheduling, our receptionists keep things running smoothly.'
+
+  // Use Sanity data if available, otherwise fallback to constants
+  const cardsToDisplay = testimonialsData?.customerCards || customersCards
 
   return (
     <MainWrapper>
@@ -20,18 +35,21 @@ export default function Testimonials() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 3, ease: 'easeOut' }}
         >
-          <Head>IMMEDITAE IMPACT</Head>
-          <Title>Trusted by 3,500+ growing businesses</Title>
+          <Head>{head}</Head>
+          <Title>{title}</Title>
           <SubTitle>
-            Unblock growth with call handling that fits your business — and your
-            clients. From answering and screening to qualification and
-            scheduling, our receptionists keep things running smoothly.
+            {subtitle.split('\n').map((line, index, array) => (
+              <span key={index}>
+                {line}
+                {index < array.length - 1 && <br />}
+              </span>
+            ))}
           </SubTitle>
         </TextWrapper>
         <CardsWrapper>
-          {customersCards.map((card: any) => (
+          {cardsToDisplay.map((card: any, index: number) => (
             <CustomerCard
-              key={card.id}
+              key={card._id || card.id || index}
               imageUrl={card.imageUrl}
               text={card.text}
               name={card.name}

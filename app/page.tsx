@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import HomeCompound from '@/compounds/HomeCompound'
 import { Metadata } from 'next'
 
@@ -30,9 +29,5 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <HomeCompound />
-    </Suspense>
-  )
+  return <HomeCompound />
 }

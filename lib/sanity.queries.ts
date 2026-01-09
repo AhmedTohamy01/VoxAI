@@ -66,6 +66,22 @@ export interface AnsweringModelsData {
   models: AnsweringModel[]
 }
 
+export interface OnboardingData {
+  head: string
+  title: string
+  subtitle: string
+  primaryButton: {
+    text: string
+    url: string
+  }
+  secondaryButton: {
+    text: string
+    url: string
+  }
+  imageUrl: string
+  imageAlt?: string
+}
+
 export async function getHeroData(): Promise<HeroData | null> {
   try {
     const hero = await client.fetch(`
@@ -267,6 +283,55 @@ export async function getAnsweringModelsData(): Promise<AnsweringModelsData | nu
     }
   } catch (error) {
     console.error('Error fetching answering models data:', error)
+    return null
+  }
+}
+
+export async function getOnboardingData(): Promise<OnboardingData | null> {
+  try {
+    const onboarding = await client.fetch(`
+      *[_type == "onboarding"][0] {
+        head,
+        title,
+        subtitle,
+        primaryButton {
+          text,
+          url
+        },
+        secondaryButton {
+          text,
+          url
+        },
+        image
+      }
+    `)
+
+    if (!onboarding) {
+      return null
+    }
+
+    // Build image URL using Sanity's image URL builder
+    const imageUrl = onboarding.image
+      ? urlFor(onboarding.image).width(500).height(300).url()
+      : ''
+
+    return {
+      head: onboarding.head || '',
+      title: onboarding.title || '',
+      subtitle: onboarding.subtitle || '',
+      primaryButton: {
+        text: onboarding.primaryButton?.text || '',
+        url: onboarding.primaryButton?.url || '',
+      },
+      secondaryButton: {
+        text: onboarding.secondaryButton?.text || '',
+        url: onboarding.secondaryButton?.url || '',
+      },
+      imageUrl: imageUrl,
+      imageAlt: onboarding.image?.alt || 'Onboarding image',
+    }
+  } catch (error) {
+    console.error('Error fetching onboarding data:', error)
     return null
   }
 }

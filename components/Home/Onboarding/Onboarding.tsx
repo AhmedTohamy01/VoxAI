@@ -1,16 +1,37 @@
 'use client'
 import styled from 'styled-components'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Button } from 'antd'
+import { OnboardingData } from '@/lib/sanity.queries'
+
+interface OnboardingProps {
+  onboardingData: OnboardingData | null
+}
 
 /*---> Component <---*/
-export default function Onboarding() {
+export default function Onboarding({ onboardingData }: OnboardingProps) {
   const textRef = useRef(null)
   const imageRef = useRef(null)
   const isImageRefInView = useInView(imageRef, { once: true, margin: '-100px' })
   const isTextRefInView = useInView(textRef, { once: true, margin: '-100px' })
+
+  // Fallback data if Sanity data is not available
+  const head = onboardingData?.head || 'EASY ONBOARDING'
+  const title = onboardingData?.title || 'Get set up in minutes'
+  const subtitle =
+    onboardingData?.subtitle ||
+    'Create your receptionist in 15 minutes and start receiving calls immediately. Try it for 30 days risk-free with our money-back guarantee.'
+  const primaryButtonText =
+    onboardingData?.primaryButton?.text || 'Create an AI Receptionist'
+  const primaryButtonUrl = onboardingData?.primaryButton?.url || '#'
+  const secondaryButtonText =
+    onboardingData?.secondaryButton?.text || 'Want help? Contact us.'
+  const secondaryButtonUrl = onboardingData?.secondaryButton?.url || '#'
+  const imageUrl = onboardingData?.imageUrl || '/img/ai-agent-5.avif'
+  const imageAlt = onboardingData?.imageAlt || 'Ai agent image'
 
   return (
     <MainWrapper>
@@ -22,16 +43,23 @@ export default function Onboarding() {
           animate={isTextRefInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 3, ease: 'easeOut' }}
         >
-          <Head>EASY ONBOARDING</Head>
-          <Title>Get set up in minutes</Title>
+          <Head>{head}</Head>
+          <Title>{title}</Title>
           <SubTitle>
-            Create your receptionist in 15 minutes and start receiving calls
-            immediately. Try it for 30 days risk-free with our money-back
-            guarantee.
+            {subtitle.split('\n').map((line, index, array) => (
+              <span key={index}>
+                {line}
+                {index < array.length - 1 && <br />}
+              </span>
+            ))}
           </SubTitle>
           <ButtonsWrapper>
-            <StyledButton>Create an AI Receptionist</StyledButton>
-            <StyledOutlineButton>Want help? Contact us.</StyledOutlineButton>
+            <Link href={primaryButtonUrl}>
+              <StyledButton>{primaryButtonText}</StyledButton>
+            </Link>
+            <Link href={secondaryButtonUrl}>
+              <StyledOutlineButton>{secondaryButtonText}</StyledOutlineButton>
+            </Link>
           </ButtonsWrapper>
         </TextWrapper>
         <ImageMaskWrapper>
@@ -43,8 +71,8 @@ export default function Onboarding() {
             transition={{ duration: 3, ease: 'easeOut' }}
           >
             <Image
-              src='/img/ai-agent-5.avif'
-              alt='Ai agent image'
+              src={imageUrl}
+              alt={imageAlt}
               fill
               style={{
                 objectFit: 'cover',
@@ -184,6 +212,8 @@ const StyledButton = styled(Button)`
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
   transition: box-shadow 0.3s ease;
   margin-bottom: 20px;
+  text-decoration: none;
+  display: inline-block;
 
   &:hover,
   &:focus {

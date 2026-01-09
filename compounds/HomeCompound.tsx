@@ -8,6 +8,7 @@ import {
   getHeroData,
   getCallCoverageData,
   getTestimonialsData,
+  getNumbersData,
 } from '@/lib/sanity.queries'
 
 /*---> Component <---*/
@@ -15,13 +16,14 @@ export default async function HomeCompound() {
   const heroData = await getHeroData()
   const callCoverageData = await getCallCoverageData()
   const testimonialsData = await getTestimonialsData()
+  const numbersData = await getNumbersData()
 
   return (
     <>
       <Hero heroData={heroData} />
       <CallCoverage callCoverageData={callCoverageData} />
       <Testimonials testimonialsData={testimonialsData} />
-      <Numbers />
+      <Numbers numbersData={numbersData} />
       <AnsweringModels />
       <Onboarding />
     </>

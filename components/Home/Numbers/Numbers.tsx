@@ -2,9 +2,14 @@
 import { useInView } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { NumbersData } from '@/lib/sanity.queries'
+
+interface NumbersProps {
+  numbersData: NumbersData | null
+}
 
 /*---> Component <---*/
-export default function Numbers() {
+export default function Numbers({ numbersData }: NumbersProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -34,33 +39,40 @@ export default function Numbers() {
     return count
   }
 
-  const count1 = useCountUp(isInView, 80)
-  const count2 = useCountUp(isInView, 77)
-  const count3 = useCountUp(isInView, 24)
+  // Fallback data if Sanity data is not available
+  const defaultStats = [
+    { number: 80, suffix: '%', text: 'of callers hang up if they reach your business voicemail — and call your competitors instead' },
+    { number: 77, suffix: '$K+', text: 'in expected costs to hire and train an in-house receptionist — who only answers during their working hours' },
+    { number: 24, suffix: '/7', text: 'call coverage when you sign up with human or AI receptionists available to answer every time' },
+  ]
+
+  const stats = numbersData?.stats || defaultStats
+
+  // Create count-up values for each stat
+  const counts = stats.map((stat) => useCountUp(isInView, stat.number))
 
   return (
     <MainWrapper ref={ref}>
-      <NumberBlock>
-        <Number>{count1}%</Number>
-        <Text>
-          of callers hang up if they reach your business voicemail — and call
-          your competitors instead
-        </Text>
-      </NumberBlock>
-      <NumberBlock>
-        <Number>${count2}K+</Number>
-        <Text>
-          in expected costs to hire and train an in-house receptionist — who
-          only answers during their working hours
-        </Text>
-      </NumberBlock>
-      <NumberBlock>
-        <Number>{count3}/7</Number>
-        <Text>
-          call coverage when you sign up with human or AI receptionists
-          available to answer every time
-        </Text>
-      </NumberBlock>
+      {stats.map((stat, index) => {
+        // Handle $ prefix in suffix (e.g., "$K+" should display as "$77K+")
+        const displayNumber = stat.suffix?.startsWith('$')
+          ? `$${counts[index]}${stat.suffix.slice(1)}`
+          : `${counts[index]}${stat.suffix || ''}`
+
+        return (
+          <NumberBlock key={index}>
+            <Number>{displayNumber}</Number>
+            <Text>
+              {stat.text.split('\n').map((line, lineIndex, array) => (
+                <span key={lineIndex}>
+                  {line}
+                  {lineIndex < array.length - 1 && <br />}
+                </span>
+              ))}
+            </Text>
+          </NumberBlock>
+        )
+      })}
     </MainWrapper>
   )
 }

@@ -39,6 +39,16 @@ export interface TestimonialsData {
   customerCards: CustomerCard[]
 }
 
+export interface Stat {
+  number: number
+  suffix?: string
+  text: string
+}
+
+export interface NumbersData {
+  stats: Stat[]
+}
+
 export async function getHeroData(): Promise<HeroData | null> {
   try {
     const hero = await client.fetch(`
@@ -160,6 +170,39 @@ export async function getTestimonialsData(): Promise<TestimonialsData | null> {
     }
   } catch (error) {
     console.error('Error fetching testimonials data:', error)
+    return null
+  }
+}
+
+export async function getNumbersData(): Promise<NumbersData | null> {
+  try {
+    const numbers = await client.fetch(`
+      *[_type == "numbers"][0] {
+        stats[] {
+          number,
+          suffix,
+          text
+        }
+      }
+    `)
+
+    if (!numbers) {
+      return null
+    }
+
+    const stats: Stat[] = numbers.stats
+      ? numbers.stats.map((stat: any) => ({
+          number: stat.number || 0,
+          suffix: stat.suffix || '',
+          text: stat.text || '',
+        }))
+      : []
+
+    return {
+      stats: stats,
+    }
+  } catch (error) {
+    console.error('Error fetching numbers data:', error)
     return null
   }
 }

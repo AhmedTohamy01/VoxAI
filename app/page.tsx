@@ -28,6 +28,11 @@ export const metadata: Metadata = {
   },
 }
 
+// Enable ISR (Incremental Static Regeneration)
+// This will revalidate the page every 60 seconds, so changes in Sanity Studio
+// will be reflected within a minute
+export const revalidate = 60
+
 export default function Home() {
   return <HomeCompound />
 }
